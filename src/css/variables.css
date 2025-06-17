@@ -1,0 +1,62 @@
+:root {
+  /* font */
+  --font-sans: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', meiryo, sans-serif;
+  --font-mplus: 'M PLUS Rounded 1c', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --base-text-unit: 16;
+  --rem-ratio: calc(1rem / var(--base-text-unit));
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-bold: 700;
+  --leading-initial: 1;
+  --leading-tight: 1.3;
+  --leading-snug: 1.5;
+  --leading-normal: 1.7;
+  --leading-relaxed: 1.8;
+  --leading-loose: 2;
+  --tracking-tight: 0.02em;
+  --tracking-normal: 0.05em;
+  --tracking-medium: 0.07em;
+  --tracking-relaxed: 0.12em;
+
+  /* size */
+  --layout-width-min: 375;
+  --layout-width-max: 1440;
+  --fluid-ratio-min: calc(1 / var(--layout-width-min) * 100dvi);
+  --fluid-ratio-max: calc(1 / var(--layout-width-max) * 100dvi);
+  --aspect-video: 16/9;
+  --aspect-thumbnail: 1.91/1;
+  --rounded-xs: 7px;
+  --rounded-s: 8px;
+  --rounded-m: 10px;
+  --rounded-sl: 14px;
+  --rounded-l: 25px;
+  --rounded-infinity: calc(infinity * 1px);
+
+  /* color */
+  --color-grayscale-0: #fff;
+  --color-grayscale-50: #BFBFBF;
+  --color-grayscale-100: #333333;
+  --color-orangescale-100: #FFF2E3;
+  --color-orangescale-200: #FFEDB4;
+  --color-orangescale-300: #F19901;
+  --color-orangescale-400: #EA5504;
+  --yellow-gradient: linear-gradient(90deg, rgb(251 222 119 / 1), rgb(255 200 0 / 1));
+  --modal-overlay: rgb(0 0 0 / 25%);
+  --background-base: var(--color-grayscale-0);
+  --font-base: var(--color-grayscale-100);
+  --underline-base: color-mix(in srgb, currentcolor, transparent 40%);
+
+  /* z-index */
+  --back-z-index: -1;
+  --default-z-index: 1;
+  --front-z-index: 2;
+  --menu-z-index: 3;
+  --modal-z-index: 4;
+
+  /* motion time */
+  --speed-quick: 0.3s;
+  --speed-normal: 0.5s;
+  --speed-slow: 1s;
+  --speed-over-slow: 2s;
+}

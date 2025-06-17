@@ -1,0 +1,27 @@
+/* stylelint-disable selector-max-id, declaration-no-important */
+.no-sp {
+  display: none !important;
+}
+
+.no-pc {
+  display: grid !important;
+}
+
+@media only screen and (min-width: 768px) {
+  .no-sp {
+    display: grid !important;
+  }
+
+  .no-pc {
+    display: none !important;
+  }
+}
+/* stylelint-enable selector-max-id, declaration-no-important */
+
+.f-mplus {
+  font-family: var(--font-mplus);
+}
+
+.f-inter {
+  font-family: var(--font-inter);
+}
