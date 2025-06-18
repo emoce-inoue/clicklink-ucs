@@ -3,7 +3,7 @@ import { premiumTableBase, premiumTable, premiumTable100 } from './premiumTables
 const getAgeRange = (age) => {
   const ageNum = parseInt(age, 10);
   const ranges = [20, 25, 30, 35, 40, 45, 50, 55, 60, 65];
-  return ranges.find(start => ageNum >= start && ageNum <= start + 4) ? `${Math.floor(ageNum / 5) * 5}-${Math.floor(ageNum / 5) * 5 + 4}` : null;
+  return ranges.find((start) => ageNum >= start && ageNum <= start + 4) ? `${Math.floor(ageNum / 5) * 5}-${Math.floor(ageNum / 5) * 5 + 4}` : null;
 };
 
 const getSpecialBenefit = (age) => {
@@ -25,7 +25,7 @@ const updateAmountOptions = (age) => {
   } else if (ageNum >= 60 && ageNum <= 69) {
     select.innerHTML = '<option value="5000">5千円</option>';
   }
-  if ([...select.options].some(opt => opt.value === currentValue)) {
+  if ([...select.options].some((opt) => opt.value === currentValue)) {
     select.value = currentValue;
   }
 };
@@ -33,7 +33,7 @@ const updateAmountOptions = (age) => {
 const updateSimulationResult = ({ age, gender, amount, cancerAmount }) => {
   const ageRange = getAgeRange(age);
   let table;
-  
+
   // がん特約の選択状態を確認
   const checkWrapper = document.querySelector('.l-result__check-wrapper');
   const cancerBlock = document.getElementById('cancerBlock');
@@ -96,11 +96,11 @@ form.addEventListener('submit', (e) => {
   const resultElement = document.querySelector('#resultBlock');
   resultElement.classList.remove('l-result--hidden');
 
-  const headerHeight = document.querySelector('.l-header').offsetHeight;
+  const headerHeight = document.querySelector('.c-header').offsetHeight;
   const scrollPosition = resultElement.offsetTop - headerHeight;
   window.scrollTo({
     top: scrollPosition,
-    behavior: 'smooth'
+    behavior: 'smooth',
   });
 
   const age = form.querySelector('#ageSelect').value;
@@ -137,13 +137,13 @@ class ModalController {
     this.closeButton = document.querySelector('.l-modal__close');
     this.modalItems = document.querySelectorAll('.l-modal__item');
     this.isOpen = false;
-    
+
     this.init();
   }
 
   init() {
     // 保証内容クリックイベント
-    document.querySelectorAll('.l-guarantee__contents-item').forEach(item => {
+    document.querySelectorAll('.l-guarantee__contents-item').forEach((item) => {
       item.addEventListener('click', (e) => {
         const targetModalId = this.getTargetModalId(item);
         if (targetModalId) {
@@ -191,7 +191,7 @@ class ModalController {
 
   showModal(modalId) {
     // すべてのモーダルを非表示
-    this.modalItems.forEach(modal => {
+    this.modalItems.forEach((modal) => {
       modal.style.display = 'none';
       modal.setAttribute('aria-hidden', 'true');
     });
@@ -208,7 +208,7 @@ class ModalController {
 
   hideModal() {
     this.overlay.style.display = 'none';
-    this.modalItems.forEach(modal => {
+    this.modalItems.forEach((modal) => {
       modal.style.display = 'none';
       modal.setAttribute('aria-hidden', 'true');
     });

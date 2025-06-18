@@ -26,6 +26,7 @@
   --fluid-ratio-max: calc(1 / var(--layout-width-max) * 100dvi);
   --aspect-video: 16/9;
   --aspect-thumbnail: 1.91/1;
+  --rounded-xxs: 2.5px;
   --rounded-xs: 7px;
   --rounded-s: 8px;
   --rounded-m: 10px;
@@ -35,13 +36,14 @@
 
   /* color */
   --color-grayscale-0: #fff;
-  --color-grayscale-50: #BFBFBF;
+  --color-grayscale-50: #bfbfbf;
   --color-grayscale-100: #333333;
-  --color-orangescale-100: #FFF2E3;
-  --color-orangescale-200: #FFEDB4;
-  --color-orangescale-300: #F19901;
-  --color-orangescale-400: #EA5504;
+  --color-orangescale-100: #fff2e3;
+  --color-orangescale-200: #ffedb4;
+  --color-orangescale-300: #f19901;
+  --color-orangescale-400: #ea5504;
   --yellow-gradient: linear-gradient(90deg, rgb(251 222 119 / 1), rgb(255 200 0 / 1));
+  --box-shadow: rgb(0 0 0 / 25%);
   --modal-overlay: rgb(0 0 0 / 25%);
   --background-base: var(--color-grayscale-0);
   --font-base: var(--color-grayscale-100);
