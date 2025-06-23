@@ -37,7 +37,7 @@ module.exports = {
   entry: {
     features: ['./src/js/utils.js', './src/css/features.css'],
     simulation: ['./src/js/utils.js', './src/js/premiumTables.js', './src/js/simulation.js', './src/css/simulation.css'],
-    'data-collection': ['./src/js/utils.js', './src/css/data-collection.css'],
+    'data-collection': ['./src/js/utils.js', './src/js/data-collection.js', './src/css/data-collection.css'],
   },
   output: {
     filename: (pathData) => {
