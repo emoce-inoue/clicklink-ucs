@@ -153,8 +153,3 @@
   font-size: calc(14 * var(--rem-ratio));
   line-height: var(--leading-tight);
 }
-
-@media only screen and (min-width: 768px) {
-  @media (any-hover: hover) {
-  }
-}

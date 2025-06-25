@@ -315,8 +315,7 @@
   display: grid;
   grid-template-columns: 1em auto 1em;
   gap: 0.3rem;
-  align-items: baseline;
-  justify-items: center;
+  place-items: baseline center;
   inline-size: fit-content;
   margin-inline: auto;
 }

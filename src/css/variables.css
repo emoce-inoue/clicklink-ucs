@@ -37,12 +37,12 @@
   /* color */
   --color-grayscale-0: #fff;
   --color-grayscale-50: #bfbfbf;
-  --color-grayscale-100: #333333;
+  --color-grayscale-100: #333;
   --color-orangescale-100: #fff2e3;
   --color-orangescale-200: #ffedb4;
   --color-orangescale-300: #f19901;
   --color-orangescale-400: #ea5504;
-  --yellow-gradient: linear-gradient(90deg, rgb(251 222 119 / 1), rgb(255 200 0 / 1));
+  --yellow-gradient: linear-gradient(90deg, rgb(251 222 119 / 100%), rgb(255 200 0 / 100%));
   --box-shadow: rgb(0 0 0 / 25%);
   --modal-overlay: rgb(0 0 0 / 25%);
   --background-base: var(--color-grayscale-0);

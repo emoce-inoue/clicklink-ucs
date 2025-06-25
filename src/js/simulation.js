@@ -8,8 +8,12 @@ const getAgeRange = (age) => {
 
 const getSpecialBenefit = (age) => {
   const ageNum = parseInt(age, 10);
-  if (ageNum <= 44) return '20万円';
-  if (ageNum <= 49) return '10万円';
+  if (ageNum <= 44) {
+    return '20万円';
+  }
+  if (ageNum <= 49) {
+    return '10万円';
+  }
   return ageNum >= 60 ? '5万円' : '10万円';
 };
 
@@ -54,10 +58,14 @@ const updateSimulationResult = ({ age, gender, amount, cancerAmount }) => {
     document.querySelector('#resultBlock').classList.remove('l-result--hidden');
 
     const specialBenefitEl = document.querySelector('#specialBenefit');
-    if (specialBenefitEl) specialBenefitEl.textContent = specialBenefit;
+    if (specialBenefitEl) {
+      specialBenefitEl.textContent = specialBenefit;
+    }
 
     const submitBtn = document.querySelector('.l-simulation__submit');
-    if (submitBtn) submitBtn.textContent = '再計算する';
+    if (submitBtn) {
+      submitBtn.textContent = '再計算する';
+    }
   }
 };
 
@@ -88,7 +96,9 @@ const form = document.querySelector('.l-simulation');
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  if (!validateForm()) return;
+  if (!validateForm()) {
+    return;
+  }
 
   const loadingScreen = document.querySelector('.l-loading');
   loadingScreen.classList.remove('l-loading--hidden');
@@ -144,7 +154,7 @@ class ModalController {
   init() {
     // 保証内容クリックイベント
     document.querySelectorAll('.l-guarantee__contents-item').forEach((item) => {
-      item.addEventListener('click', (e) => {
+      item.addEventListener('click', () => {
         const targetModalId = this.getTargetModalId(item);
         if (targetModalId) {
           this.showModal(targetModalId);
