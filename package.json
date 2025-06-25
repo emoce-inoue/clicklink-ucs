@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "format": "prettier --config config/.prettierrc --write '**/*.{js,css,html}'",
-    "lint:html": "htmlhint --config config/.htmlhintrc '**/*.html'",
-    "lint:js": "eslint --config config/.eslintrc.js '**/*.js'",
-    "lint:js:fix": "eslint --config config/.eslintrc.js --fix '**/*.js'",
-    "lint:css": "stylelint --config config/stylelint.config.js --ignore-path config/stylelintignore '**/*.css'",
-    "lint:css:fix": "stylelint --config config/stylelint.config.js --ignore-path config/stylelintignore '**/*.css' --fix",
+    "format": "prettier --config config/.prettierrc --write '**/*.{js,css,html}' --ignore-path .gitignore",
+    "lint:html": "htmlhint --config config/.htmlhintrc 'src/**/*.html'",
+    "lint:js": "eslint --config config/.eslintrc.js 'src/**/*.js' 'config/**/*.js'",
+    "lint:js:fix": "eslint --config config/.eslintrc.js --fix 'src/**/*.js' 'config/**/*.js'",
+    "lint:css": "stylelint --config config/stylelint.config.js --ignore-path config/stylelintignore 'src/**/*.css'",
+    "lint:css:fix": "stylelint --config config/stylelint.config.js --ignore-path config/stylelintignore 'src/**/*.css' --fix",
     "check": "npm run format && npm run lint:js && npm run lint:css && npm run lint:html",
     "start": "webpack serve",
     "build": "webpack --mode production"
