@@ -11,15 +11,15 @@ const htmlPlugins = glob.sync('./src/**/*.html').map((file) => {
   let outputFilename;
   let chunk;
 
-  if (filename === 'features/index.html') {
-    outputFilename = 'features/index.html';
-    chunk = ['features'];
+  if (filename === 'as/index.html') {
+    outputFilename = 'as/index.html';
+    chunk = ['as'];
   } else if (filename === 'simulation/index.html') {
     outputFilename = 'simulation/index.html';
     chunk = ['simulation'];
-  } else if (filename === 'data-collection/index.html') {
-    outputFilename = 'data-collection/index.html';
-    chunk = ['data-collection'];
+  } else if (filename === 'data/index.html') {
+    outputFilename = 'data/index.html';
+    chunk = ['data'];
   }
 
   return new HtmlWebpackPlugin({
@@ -35,9 +35,9 @@ const htmlPlugins = glob.sync('./src/**/*.html').map((file) => {
 module.exports = {
   mode: 'production',
   entry: {
-    features: ['./src/js/utils.js', './src/css/features.css'],
+    as: ['./src/js/utils.js', './src/css/as.css'],
     simulation: ['./src/js/utils.js', './src/js/premiumTables.js', './src/js/simulation.js', './src/css/simulation.css'],
-    'data-collection': ['./src/js/utils.js', './src/js/data-collection.js', './src/css/data-collection.css'],
+    data: ['./src/js/utils.js', './src/js/data.js', './src/css/data.css'],
   },
   output: {
     filename: (pathData) => {
