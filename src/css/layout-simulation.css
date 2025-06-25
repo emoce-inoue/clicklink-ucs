@@ -484,6 +484,8 @@
   display: grid;
   row-gap: 16px;
   padding: 20px 15px;
+  max-block-size: 85vh;
+  overflow-y: auto;
 }
 
 .l-modal__description {

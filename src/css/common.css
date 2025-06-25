@@ -295,7 +295,7 @@
 
 .c-footer__copyright {
   padding-block: 15px;
-  background-color: var(--color-orangescale-400); 
+  background-color: var(--color-orangescale-400);
   color: var(--color-grayscale-0);
   font-size: calc(12 * var(--rem-ratio));
   text-align: center;
