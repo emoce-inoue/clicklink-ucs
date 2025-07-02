@@ -80,6 +80,25 @@
   background: var(--black-square) no-repeat center / contain;
 }
 
+.l-data-block__title--area {
+  grid-template-areas: 
+  'icon title'
+  '. text';
+}
+
+.l-data-block__title-main {
+  grid-area: title;
+}
+
+.l-data-block__title--area::before {
+  grid-area: icon;
+}
+
+.l-data-block__title-sub {
+  grid-area: text;
+  font-weight: var(--font-medium);
+}
+
 .l-data-block__text {
   position: absolute;
   inset-block-start: calc(-1 * 0em);

@@ -144,6 +144,10 @@
   grid-auto-columns: 20% auto;
 }
 
+.l-merit__header--narrow {
+  grid-auto-columns: 10% auto;
+}
+
 .l-merit__image {
   inline-size: 40%;
   margin-inline: auto;

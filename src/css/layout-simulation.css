@@ -479,6 +479,16 @@
   background-color: var(--color-orangescale-300);
 }
 
+.l-modal__title--multiple {
+  display: grid;
+  justify-items: center;
+}
+
+.l-modal__title-sub {
+  font-size: calc(11 * var(--rem-ratio));
+  line-height: var(--leading-initial);
+}
+
 .l-modal__content {
   display: grid;
   row-gap: 16px;
