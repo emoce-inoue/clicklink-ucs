@@ -1,0 +1,315 @@
+/* layout */
+.l-main {
+  max-inline-size: 430px;
+  margin-inline: auto;
+}
+
+.l-section__heading {
+  position: relative;
+  padding-block: 20px;
+  background-image: var(--yellow-gradient);
+  border-radius: var(--rounded-l) var(--rounded-l) 0 0;
+  color: var(--color-grayscale-0);
+  font-size: calc(22 * var(--rem-ratio));
+  font-weight: var(--font-medium);
+  text-align: center;
+}
+
+.l-section__heading::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 18px;
+  display: block;
+  inline-size: 46%;
+  block-size: 1.5px;
+  margin-inline: auto;
+  background-color: var(--color-grayscale-0);
+}
+
+.l-section__heading--closable {
+  border-radius: var(--rounded-m);
+  inline-size: 90%;
+  margin-inline: auto;
+}
+
+.l-section__heading--closable.l-section__heading--opened {
+  inline-size: 100%;
+  margin-inline: 0;
+  border-radius: var(--rounded-l) var(--rounded-l) 0 0;
+}
+
+.l-data-block__heading {
+  font-size: calc(18 * var(--rem-ratio));
+  text-align: center;
+}
+
+.l-data-block__emphasis {
+  color: var(--color-orangescale-400);
+  font-size: calc(23 * var(--rem-ratio));
+  font-weight: var(--font-bold);
+}
+
+.l-data-block__content {
+  position: relative;
+  display: grid;
+  row-gap: 12px;
+  background-color: var(--color-orangescale-100);
+  padding: 15px;
+}
+
+.l-data-block__figure {
+  inline-size: 90%;
+  margin-inline: auto;
+}
+
+.l-data-block__title {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 3px;
+  align-items: center;
+  font-size: calc(13 * var(--rem-ratio));
+  font-weight: var(--font-bold);
+}
+
+.l-data-block__title::before {
+  content: '';
+  display: inline-block;
+  inline-size: 9px;
+  aspect-ratio: 1;
+  background: var(--black-square) no-repeat center / contain;
+}
+
+.l-data-block__title--area {
+  grid-template-areas: 
+  'icon title'
+  '. text';
+}
+
+.l-data-block__title-main {
+  grid-area: title;
+}
+
+.l-data-block__title--area::before {
+  grid-area: icon;
+}
+
+.l-data-block__title-sub {
+  grid-area: text;
+  font-weight: var(--font-medium);
+}
+
+.l-data-block__text {
+  position: absolute;
+  inset-block-start: calc(-1 * 0em);
+  inset-inline-end: calc(1.1em + 0em);
+  padding: 1em 1.1em;
+  background-color: var(--color-grayscale-0);
+  border: 2px solid var(--color-orangescale-300);
+  border-radius: var(--rounded-infinity);
+  color: var(--color-orangescale-300);
+  font-size: calc(15 * var(--rem-ratio));
+  font-weight: var(--font-bold);
+  text-align: center;
+  line-height: var(--leading-tight);
+  scale: 0.9;
+}
+
+.l-data-block__text::before {
+  content: '';
+  position: absolute;
+  inset-block-end: -9px;
+  inset-inline: 0;
+  margin-inline: auto;
+  inline-size: 16px;
+  aspect-ratio: 1;
+  border: 2px solid;
+  border-color: var(--color-orangescale-300) var(--color-orangescale-300) transparent transparent;
+  rotate: 135deg;
+  background-color: var(--color-grayscale-0);
+  transform: skew(344deg, 344deg);
+}
+
+.l-data-block__number {
+  font-size: calc(26 * var(--rem-ratio));
+  letter-spacing: -0.04em;
+}
+
+.l-data-block__source {
+  font-size: calc(11 * var(--rem-ratio));
+}
+
+.l-data-block {
+  display: grid;
+  row-gap: 5px;
+  inline-size: 90%;
+  margin-inline: auto;
+}
+
+.l-data-block-wrapper {
+  display: none;
+  row-gap: 50px;
+  padding-block: 35px 0;
+}
+
+.l-data-block-wrapper--opened {
+  display: grid;
+}
+
+.l-data-block-wrapper--static {
+  display: grid;
+  padding-block: 35px 50px;
+}
+
+.l-data-block__message {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.l-data-block__avatar {
+  max-inline-size: 50px;
+}
+
+.l-data-block__bubble {
+  max-inline-size: 265px;
+  padding-block-end: 10px;
+}
+
+.l-data-block__heading-accent {
+  color: var(--color-orangescale-400);
+}
+
+.l-data-block__heading--large {
+  margin-block-end: 5px;
+  font-size: calc(36 * var(--rem-ratio));
+  line-height: var(--leading-initial);
+}
+
+.l-data-block__emphasis--large {
+  font-size: calc(70 * var(--rem-ratio));
+}
+
+.l-data-block__figure-text {
+  color: var(--color-orangescale-300);
+  font-size: calc(18 * var(--rem-ratio));
+  font-weight: var(--font-bold);
+  text-align: center;
+}
+
+.l-section--hospitalization {
+  padding-block-start: 40px;
+}
+
+.l-section--padding {
+  padding-block-end: 50px;
+}
+
+.l-data-block__highlight {
+  color: var(--color-orangescale-300);
+}
+
+.l-data-block__message--reverse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.l-section__subtitle {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  column-gap: 10px;
+  align-items: anchor-center;
+  color: var(--color-orangescale-300);
+  font-size: calc(18 * var(--rem-ratio));
+  font-weight: var(--font-medium);
+}
+
+.l-section__subtitle::before,
+.l-section__subtitle::after {
+  content: '';
+  inline-size: 2px;
+  block-size: 20px;
+  background-color: var(--color-orangescale-300);
+  border-radius: var(--rounded-xxs);
+}
+
+.l-section__subtitle::before {
+  rotate: -30deg;
+}
+
+.l-section__subtitle::after {
+  rotate: 30deg;
+}
+
+.l-data-block__info {
+  position: relative;
+  padding-block-start: 10px;
+}
+
+.l-data-block__info-text {
+  position: absolute;
+  inset-block-start: -15px;
+  inset-inline-start: 10px;
+  max-inline-size: 65px;
+}
+
+.l-data-block__heading--padding {
+  padding-inline-start: 65px;
+}
+
+.l-point-block__item {
+  inline-size: 90%;
+  margin-inline: auto;
+  background-color: var(--color-orangescale-200);
+}
+
+.l-point-block__heading {
+  color: var(--color-orangescale-400);
+  font-size: calc(18 * var(--rem-ratio));
+  font-weight: var(--font-medium);
+  text-align: center;
+}
+
+.l-point-block__content {
+  position: relative;
+  padding: 30px 16px;
+}
+
+.l-point-block__image {
+  position: absolute;
+  inset-block-start: 10px;
+  inset-inline-start: 15px;
+  max-inline-size: 80px;
+}
+
+.l-point-block {
+  display: grid;
+  row-gap: 10px;
+}
+
+.l-section__close-button {
+  position: absolute;
+  inset-block-start: 30%;
+  inset-inline-end: 10%;
+  max-inline-size: 35px;
+  transition: rotate 0.3s ease-in-out;
+}
+
+.l-section__close-button--opened {
+  rotate: 45deg;
+}
+
+@media only screen and (min-width: 430px) {
+  .l-data-block__text {
+    inset-block-start: calc(-1 * (0em - 0.5em));
+    inset-inline-end: calc(1.1em + 0.5em);
+  }
+
+  @media (any-hover: hover) {
+    .l-section__heading--closable:hover {
+      cursor: pointer;
+    }
+  }
+}
