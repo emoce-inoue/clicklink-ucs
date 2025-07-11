@@ -8,7 +8,7 @@ const getAgeRange = (age) => {
 
 const getSpecialBenefit = (age) => {
   const ageNum = parseInt(age, 10);
-  if (ageNum <= 44) {
+  if (ageNum <= 39) {
     return '20万円';
   }
   if (ageNum <= 49) {
