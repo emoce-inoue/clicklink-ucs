@@ -8,7 +8,7 @@ const getAgeRange = (age) => {
 
 const getSpecialBenefit = (age, gender) => {
   const ageNum = parseInt(age, 10);
-  
+
   if (gender === 'male') {
     // 男性のデフォルト値
     if (ageNum >= 20 && ageNum <= 29) {
@@ -32,26 +32,28 @@ const getSpecialBenefit = (age, gender) => {
       return '50000'; // 5万円（25~49歳、60歳以上）
     }
   }
-  
+
   // フォールバック
   return '100000';
 };
 
 const updateSpecialBenefitOptions = (age, gender) => {
   const select = document.querySelector('#specialBenefitSelect');
-  if (!select) return;
-  
+  if (!select) {
+    return;
+  }
+
   const ageNum = parseInt(age, 10);
-  
+
   // 年齢と性別に応じた選択肢の制限
   let shouldLimitTo200000 = false;
-  
+
   if (gender === 'male' && ageNum >= 20 && ageNum <= 29) {
     shouldLimitTo200000 = true;
   } else if (gender === 'female' && ageNum >= 20 && ageNum <= 24) {
     shouldLimitTo200000 = true;
   }
-  
+
   if (shouldLimitTo200000) {
     // 20万円の選択肢のみ
     select.innerHTML = '<option value="200000">20万円</option>';
@@ -64,7 +66,7 @@ const updateSpecialBenefitOptions = (age, gender) => {
       <option value="150000">15万円</option>
       <option value="200000">20万円</option>
     `;
-    
+
     // デフォルト値を設定（年齢や性別変更時は常にデフォルト値を適用）
     const defaultValue = getSpecialBenefit(age, gender);
     select.value = defaultValue;
@@ -114,9 +116,9 @@ const updateSimulationResult = ({ age, gender, amount, cancerAmount, specialBene
     if (specialBenefitSelect) {
       const currentValue = specialBenefit;
       updateSpecialBenefitOptions(age, gender);
-      
+
       // 現在選択されている値が有効な選択肢の場合は保持
-      if ([...specialBenefitSelect.options].some(opt => opt.value === currentValue)) {
+      if ([...specialBenefitSelect.options].some((opt) => opt.value === currentValue)) {
         specialBenefitSelect.value = currentValue;
       }
     }
@@ -134,9 +136,9 @@ const updateSimulationResult = ({ age, gender, amount, cancerAmount, specialBene
       ageRange,
       amount,
       tableExists: !!table,
-      tableKeys: table ? Object.keys(table) : 'table is undefined'
+      tableKeys: table ? Object.keys(table) : 'table is undefined',
     });
-    
+
     // エラー表示またはデフォルト動作
     document.querySelector('#premiumAmount').textContent = '計算できません';
   }
@@ -208,7 +210,7 @@ document.querySelector('#ageSelect').addEventListener('change', (e) => {
 });
 
 // 性別の変更イベントリスナー
-document.querySelectorAll("input[name='gender']").forEach(input => {
+document.querySelectorAll("input[name='gender']").forEach((input) => {
   input.addEventListener('change', (e) => {
     const age = document.querySelector('#ageSelect').value;
     if (age) {
