@@ -81,9 +81,9 @@
 }
 
 .l-data-block__title--area {
-  grid-template-areas: 
-  'icon title'
-  '. text';
+  grid-template-areas:
+    'icon title'
+    '. text';
 }
 
 .l-data-block__title-main {

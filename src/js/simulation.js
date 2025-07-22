@@ -1,4 +1,4 @@
-import { premiumTableBase, premiumTable, premiumTable100 } from './premiumTables.js';
+import { premiumTables } from './premiumTables.js';
 
 const getAgeRange = (age) => {
   const ageNum = parseInt(age, 10);
@@ -6,15 +6,71 @@ const getAgeRange = (age) => {
   return ranges.find((start) => ageNum >= start && ageNum <= start + 4) ? `${Math.floor(ageNum / 5) * 5}-${Math.floor(ageNum / 5) * 5 + 4}` : null;
 };
 
-const getSpecialBenefit = (age) => {
+const getSpecialBenefit = (age, gender) => {
   const ageNum = parseInt(age, 10);
-  if (ageNum <= 44) {
-    return '20万円';
+
+  if (gender === 'male') {
+    // 男性のデフォルト値
+    if (ageNum >= 20 && ageNum <= 29) {
+      return '200000'; // 20万円
+    } else if (ageNum >= 30 && ageNum <= 34) {
+      return '100000'; // 10万円
+    } else if (ageNum >= 50 && ageNum <= 54) {
+      return '100000'; // 10万円
+    } else {
+      return '50000'; // 5万円（35~49歳、55歳以上）
+    }
+  } else if (gender === 'female') {
+    // 女性のデフォルト値
+    if (ageNum >= 20 && ageNum <= 24) {
+      return '200000'; // 20万円
+    } else if (ageNum >= 50 && ageNum <= 54) {
+      return '150000'; // 15万円
+    } else if (ageNum >= 55 && ageNum <= 59) {
+      return '100000'; // 10万円
+    } else {
+      return '50000'; // 5万円（25~49歳、60歳以上）
+    }
   }
-  if (ageNum <= 49) {
-    return '10万円';
+
+  // フォールバック
+  return '100000';
+};
+
+const updateSpecialBenefitOptions = (age, gender) => {
+  const select = document.querySelector('#specialBenefitSelect');
+  if (!select) {
+    return;
   }
-  return ageNum >= 60 ? '5万円' : '10万円';
+
+  const ageNum = parseInt(age, 10);
+
+  // 年齢と性別に応じた選択肢の制限
+  let shouldLimitTo200000 = false;
+
+  if (gender === 'male' && ageNum >= 20 && ageNum <= 29) {
+    shouldLimitTo200000 = true;
+  } else if (gender === 'female' && ageNum >= 20 && ageNum <= 24) {
+    shouldLimitTo200000 = true;
+  }
+
+  if (shouldLimitTo200000) {
+    // 20万円の選択肢のみ
+    select.innerHTML = '<option value="200000">20万円</option>';
+    select.value = '200000';
+  } else {
+    // 通常通り4択
+    select.innerHTML = `
+      <option value="50000">5万円</option>
+      <option value="100000">10万円</option>
+      <option value="150000">15万円</option>
+      <option value="200000">20万円</option>
+    `;
+
+    // デフォルト値を設定（年齢や性別変更時は常にデフォルト値を適用）
+    const defaultValue = getSpecialBenefit(age, gender);
+    select.value = defaultValue;
+  }
 };
 
 const updateAmountOptions = (age) => {
@@ -34,38 +90,57 @@ const updateAmountOptions = (age) => {
   }
 };
 
-const updateSimulationResult = ({ age, gender, amount, cancerAmount }) => {
+const updateSimulationResult = ({ age, gender, amount, cancerAmount, specialBenefit }) => {
   const ageRange = getAgeRange(age);
-  let table;
 
   // がん特約の選択状態を確認
   const checkWrapper = document.querySelector('.l-result__check-wrapper');
   const cancerBlock = document.getElementById('cancerBlock');
   const isCancerSelected = checkWrapper.classList.contains('l-result__check--active') && cancerBlock.classList.contains('l-result__cancer--visible');
 
-  // がん特約の選択状態に応じてテーブルを選択
-  if (!isCancerSelected) {
-    table = premiumTableBase;
-  } else {
-    table = cancerAmount === '100' ? premiumTable100 : premiumTable;
+  // 入院一時金とがん特約の組み合わせに応じてテーブルを選択
+  let cancerType = 'base';
+  if (isCancerSelected) {
+    cancerType = cancerAmount === '100' ? 'cancer100' : 'cancer50';
   }
 
+  const table = premiumTables[specialBenefit]?.[cancerType];
   const premium = table?.[gender]?.[ageRange]?.[amount];
-  const specialBenefit = getSpecialBenefit(age);
 
   if (premium !== undefined) {
     document.querySelector('#premiumAmount').textContent = premium.toLocaleString();
     document.querySelector('#resultBlock').classList.remove('l-result--hidden');
 
-    const specialBenefitEl = document.querySelector('#specialBenefit');
-    if (specialBenefitEl) {
-      specialBenefitEl.textContent = specialBenefit;
+    // 年齢と性別に応じた選択肢を更新し、現在の値を保持
+    const specialBenefitSelect = document.querySelector('#specialBenefitSelect');
+    if (specialBenefitSelect) {
+      const currentValue = specialBenefit;
+      updateSpecialBenefitOptions(age, gender);
+
+      // 現在選択されている値が有効な選択肢の場合は保持
+      if ([...specialBenefitSelect.options].some((opt) => opt.value === currentValue)) {
+        specialBenefitSelect.value = currentValue;
+      }
     }
 
     const submitBtn = document.querySelector('.l-simulation__submit');
     if (submitBtn) {
       submitBtn.textContent = '再計算する';
     }
+  } else {
+    // テーブルデータが見つからない場合の処理
+    console.warn('保険料テーブルが見つかりません:', {
+      specialBenefit,
+      cancerType,
+      gender,
+      ageRange,
+      amount,
+      tableExists: !!table,
+      tableKeys: table ? Object.keys(table) : 'table is undefined',
+    });
+
+    // エラー表示またはデフォルト動作
+    document.querySelector('#premiumAmount').textContent = '計算できません';
   }
 };
 
@@ -117,8 +192,9 @@ form.addEventListener('submit', (e) => {
   const gender = form.querySelector("input[name='gender']:checked").value;
   const amount = parseInt(document.querySelector('#amountSelect').value, 10);
   const cancerAmount = document.querySelector('#cancerAmountSelect')?.value || '50';
+  const specialBenefit = document.querySelector('#specialBenefitSelect')?.value || '100000';
 
-  updateSimulationResult({ age, gender, amount, cancerAmount });
+  updateSimulationResult({ age, gender, amount, cancerAmount, specialBenefit });
 
   setTimeout(() => {
     loadingScreen.classList.add('l-loading--hidden');
@@ -127,6 +203,20 @@ form.addEventListener('submit', (e) => {
 
 document.querySelector('#ageSelect').addEventListener('change', (e) => {
   updateAmountOptions(e.target.value);
+  const gender = document.querySelector("input[name='gender']:checked")?.value;
+  if (gender) {
+    updateSpecialBenefitOptions(e.target.value, gender);
+  }
+});
+
+// 性別の変更イベントリスナー
+document.querySelectorAll("input[name='gender']").forEach((input) => {
+  input.addEventListener('change', (e) => {
+    const age = document.querySelector('#ageSelect').value;
+    if (age) {
+      updateSpecialBenefitOptions(age, e.target.value);
+    }
+  });
 });
 
 // チェックアイコンのトグル機能
