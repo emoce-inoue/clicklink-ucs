@@ -570,6 +570,7 @@ summary::-webkit-details-marker {
   font-size: calc(14 * var(--rem-ratio));
   text-align: end;
 }
+
 /* layout */
 .l-main {
   max-inline-size: 430px;
